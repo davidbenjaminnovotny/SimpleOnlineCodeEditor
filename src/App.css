@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+.pane{
+  display:flex;
+  justify-content: space-between;
+
+}
+.Editor{
+  background:black;
+  width:100%;
+}
+.EditorHeader{
+  padding:8px;
+  display:flex;
+  justify-content: start;
+}
