@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+ 
 }
 
 .App-logo {
@@ -48,5 +48,12 @@
 .EditorHeader{
   padding:8px;
   display:flex;
-  justify-content: start;
+  justify-content:space-between;
+}
+.EditorHeader_Title{
+  color:white;
+  font-size:1.3em;
+}
+textarea {
+ 
 }
