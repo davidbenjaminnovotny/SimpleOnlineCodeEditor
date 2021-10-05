@@ -15,8 +15,11 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/css/css');
 
-function Editor({title,mode}) {
+
+
+function Editor({title,mode, childToParent}) {
     const [code, setCode] = React.useState('');
+   
    
 
     const options = {
@@ -25,7 +28,6 @@ function Editor({title,mode}) {
         lineNumbers: true,
         lineWrapping: true,
         showCursorWhenSelecting: true,
-        
         alignWithWord: true,
         spellcheck: true,
 
@@ -45,6 +47,7 @@ function Editor({title,mode}) {
                     setCode(value);
                 }}
                 onChange={(editor, data, value) => {
+                    childToParent(value)
                 }}
             />
 
