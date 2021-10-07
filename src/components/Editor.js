@@ -36,13 +36,16 @@ function Editor({title,mode, childToParent}) {
     return (
         <div className="Editor">
             <div className="EditorHeader">
-            <h1 className="EditorHeader_Title">{title}</h1>
-                <button className="EditorHeader_Resize">Resize</button>
-            
+                <h1 className="EditorHeader_Title">{title}</h1>
+                <div>
+                    <button className="EditorHeader_button EditorHeader_Resize">Resize</button>
+                    <button className="EditorHeader_button EditorHeader_Settings">Settings</button>
+                </div>
             </div>
             <CodeMirror
                 value={code}
                 options={options}
+                className="EditorConsole"
                 onBeforeChange={(editor, data, value) => {
                     setCode(value);
                 }}

@@ -4,84 +4,75 @@ import './App.css';
 
 
 import Editor from './components/Editor'
+import Navigation from './components/Navigation'
+import Display from './components/Display'
+
+import {cssOptions, xmlOptions, javascriptOptions} from './constants/EditorOptions.js'
 
 function App() {
-  
+  // Are set to current contents of individual editor boxes
   const [htmlCode, setHtmlCode] = React.useState('');
   const [cssCode, setCssCode] = React.useState('');
   const [javascriptCode, setJavascriptCode] = React.useState('');
 
+  // Final compilation 
+  const [finalCode, setFinalCode] = React.useState('')
+
+  // Child to parent data transfers
   const htmlPull = (childData) => {
         setHtmlCode(childData)
   }
   const cssPull = (childData) => {
-    setCssCode(childData)
-}
-const javascriptPull = (childData) => {
-  setJavascriptCode(childData)
-}
-let srcDoc = `
-<html>
-  <style>${cssCode}</style>
-  <body>
-  ${htmlCode}
-  <script>${javascriptCode}</script>
-  </body>
- 
+      setCssCode(childData)
+  }
+  const javascriptPull = (childData) => {
+    setJavascriptCode(childData)
+  }
 
-</html>
-`
-
+// Timeout for paint after changes
 React.useEffect(() => {
   const timeout = setTimeout(() => {
-  
+    setFinalCode(`
+    <html>
+      <style>${cssCode}</style>
+      <body>
+      ${htmlCode}
+      <script>${javascriptCode}</script>
+      </body>
+    </html>
+    `)
   }, 250);
-
   return () => clearTimeout(timeout);
 }, [htmlCode, cssCode, javascriptCode]);
 
-  const xml = {
-    title:"Html",
-    mode: "xml"
-  }
-  const css = {
-    title:"Css",
-    mode: "css"
-  }
-  const javascript = {
-    title:"Javascript",
-    mode: "javascript"
-  }
 
   return (
     <div className="App">
+      <Navigation/>
       <div className="pane top-pane">
         <Editor 
-        className="editorComponent" 
-        title={xml.title} 
-        mode={xml.mode} 
-        childToParent={htmlPull}
+          className="editorComponent" 
+          title={xmlOptions.title} 
+          mode={xmlOptions.mode} 
+          childToParent={htmlPull}
         />
         <Editor 
-        className="editorComponent" 
-        title={css.title} 
-        mode={css.mode} 
-        childToParent={cssPull}
+          className="editorComponent" 
+          title={cssOptions.title} 
+          mode={cssOptions.mode} 
+          childToParent={cssPull}
         />
         <Editor 
-        className="editorComponent" 
-        title={javascript.title} 
-        mode={javascript.mode} 
-        childToParent={javascriptPull}
+          className="editorComponent" 
+          title={javascriptOptions.title} 
+          mode={javascriptOptions.mode} 
+          childToParent={javascriptPull}
         />
       </div>
       <div className="pane bottom-pane">
-         <iframe
-         title={'SandBox'}
-         height={'auto'}
-         width={'100%'}
-          srcDoc={srcDoc}
-        ></iframe>
+        <Display 
+        
+        />
       </div>
     </div>
   );
