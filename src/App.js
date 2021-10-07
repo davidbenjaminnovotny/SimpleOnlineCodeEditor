@@ -71,7 +71,7 @@ React.useEffect(() => {
       </div>
       <div className="pane bottom-pane">
         <Display 
-        
+        code={finalCode}
         />
       </div>
     </div>

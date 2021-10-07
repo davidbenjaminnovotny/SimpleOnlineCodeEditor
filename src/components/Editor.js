@@ -17,10 +17,10 @@ require('codemirror/mode/css/css');
 
 
 
-function Editor({title,mode, childToParent}) {
+function Editor({ title, mode, childToParent }) {
     const [code, setCode] = React.useState('');
-   
-   
+
+
 
     const options = {
         mode: mode,
@@ -30,13 +30,16 @@ function Editor({title,mode, childToParent}) {
         showCursorWhenSelecting: true,
         alignWithWord: true,
         spellcheck: true,
+        autocorrenct:true,
 
     };
 
     return (
         <div className="Editor">
             <div className="EditorHeader">
-                <h1 className="EditorHeader_Title">{title}</h1>
+                <div class="EditorHeader_TitleContainer">
+                    <h1 className="EditorHeader_Title">{title}</h1>
+                </div>
                 <div>
                     <button className="EditorHeader_button EditorHeader_Resize">Resize</button>
                     <button className="EditorHeader_button EditorHeader_Settings">Settings</button>
