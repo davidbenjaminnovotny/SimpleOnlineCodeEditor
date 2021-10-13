@@ -5,6 +5,7 @@ import '../App.css'
 
 const Display = ({code}) => {
 
+
     return (
         <div className="Display">
             <iframe
