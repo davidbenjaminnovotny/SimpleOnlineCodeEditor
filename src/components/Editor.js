@@ -5,10 +5,6 @@ import '../App.css'
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/material.css";
 
-
-
-
-
 import { Controlled as CodeMirror } from 'react-codemirror2'
 
 require('codemirror/mode/javascript/javascript');
@@ -17,9 +13,9 @@ require('codemirror/mode/css/css');
 
 
 
-function Editor({ title, mode, childToParent }) {
-    const [code, setCode] = React.useState('');
-
+function Editor({ title, mode, codeExtract, codeInput }) {
+    const [code, setCode] = React.useState(codeInput === undefined ? "" : codeInput);
+   
 
 
     const options = {
@@ -30,30 +26,31 @@ function Editor({ title, mode, childToParent }) {
         showCursorWhenSelecting: true,
         alignWithWord: true,
         spellcheck: true,
-        autocorrenct:true,
+        autocorrenct: true,
 
     };
 
     return (
         <div className="Editor">
             <div className="EditorHeader">
-                <div class="EditorHeader_TitleContainer">
+                <div className="EditorHeader_TitleContainer">
                     <h1 className="EditorHeader_Title">{title}</h1>
                 </div>
                 <div>
                     <button className="EditorHeader_button EditorHeader_Resize">Resize</button>
-                    <button className="EditorHeader_button EditorHeader_Settings">Settings</button>
                 </div>
             </div>
+
             <CodeMirror
                 value={code}
                 options={options}
                 className="EditorConsole"
                 onBeforeChange={(editor, data, value) => {
                     setCode(value);
+
                 }}
                 onChange={(editor, data, value) => {
-                    childToParent(value)
+                    codeExtract({ code: value, type: mode })
                 }}
             />
 

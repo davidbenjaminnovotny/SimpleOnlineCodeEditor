@@ -1,4 +1,5 @@
   // This is called lazy code :)
+
   const xmlOptions = {
     title:"Html",
     mode: "xml"
