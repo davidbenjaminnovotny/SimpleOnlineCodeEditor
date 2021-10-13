@@ -1,3 +1,11 @@
+
+# A simple browser based code editor
+## Like codepen, but by far less useful and unncessary :)
+
+Built to figure out a fix for another project, now forever publicly available on github for your viewing displeasure.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
